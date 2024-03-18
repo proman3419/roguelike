@@ -5,13 +5,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01agy"]
 
-[node name="Player" type="Node"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("2_ogsbj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_01agy")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2vdyw")
+
+[node name="Player" type="Node" parent="."]

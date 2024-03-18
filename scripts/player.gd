@@ -1,6 +1,6 @@
 extends CharacterBody2D
+class_name Player
 
-var direction : Vector2 = Vector2()
 var speed = 200
 var friction = 0.1
 var acceleration = 0.1
