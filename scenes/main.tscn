@@ -1,0 +1,75 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7wi5ui6dredy"]
+
+[ext_resource type="Texture2D" uid="uid://bkksfml25334v" path="res://assets/door.png" id="1_oauld"]
+[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/enemy.png" id="2_8qr8x"]
+[ext_resource type="Texture2D" uid="uid://dvk47umh1ww41" path="res://assets/floor.png" id="3_eiuga"]
+[ext_resource type="Texture2D" uid="uid://bmnfg3j07swd1" path="res://assets/gold.png" id="4_ur1iy"]
+[ext_resource type="Texture2D" uid="uid://bdssm00gyl5mp" path="res://assets/health.png" id="5_ievob"]
+[ext_resource type="Texture2D" uid="uid://cibiuikr55x4g" path="res://assets/player.png" id="6_34jwm"]
+[ext_resource type="Texture2D" uid="uid://bimemprha4xd" path="res://assets/wall.png" id="7_ca3s0"]
+[ext_resource type="PackedScene" uid="uid://cr5ht1sbklutd" path="res://scenes/player.tscn" id="8_ukqov"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qjkhi"]
+texture = ExtResource("1_oauld")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foqlp"]
+texture = ExtResource("2_8qr8x")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ju0uj"]
+texture = ExtResource("3_eiuga")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eapdu"]
+texture = ExtResource("4_ur1iy")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2fi4f"]
+texture = ExtResource("5_ievob")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e4x7i"]
+texture = ExtResource("6_34jwm")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nro6u"]
+texture = ExtResource("7_ca3s0")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_31pv2"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qjkhi")
+sources/1 = SubResource("TileSetAtlasSource_foqlp")
+sources/2 = SubResource("TileSetAtlasSource_ju0uj")
+sources/3 = SubResource("TileSetAtlasSource_eapdu")
+sources/4 = SubResource("TileSetAtlasSource_2fi4f")
+sources/5 = SubResource("TileSetAtlasSource_e4x7i")
+sources/6 = SubResource("TileSetAtlasSource_nro6u")
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_31pv2")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 2, 0, 1, 2, 0, 65537, 2, 0, 65536, 2, 0, 131071, 2, 0, 65535, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, 65538, 2, 0, 131074, 2, 0, 131073, 2, 0, 131072, 2, 0, 196607, 2, 0, 196606, 2, 0, 131070, 2, 0, 65534, 2, 0, -2, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -65534, 2, 0, 2, 2, 0, -196606, 2, 0, -196607, 2, 0, -196608, 2, 0, -131073, 2, 0, -131074, 2, 0, -131075, 2, 0, -65539, 2, 0, -3, 2, 0, 65533, 2, 0, 131069, 2, 0, 196605, 2, 0, -196605, 6, 0, -131069, 6, 0, -65533, 6, 0, 3, 6, 0, 65539, 6, 0, 131075, 6, 0, 196611, 6, 0, 196610, 6, 0, 196609, 6, 0, 196608, 6, 0, 262143, 6, 0, 262142, 6, 0, 262141, 6, 0, 262140, 6, 0, 196604, 6, 0, 131068, 6, 0, 65532, 6, 0, -4, 6, 0, -65540, 6, 0, -131076, 6, 0, -196612, 6, 0, -196611, 6, 0, -196610, 6, 0, -196609, 6, 0, -262144, 6, 0, -262143, 6, 0, -262142, 6, 0, -262141, 6, 0)
+
+[node name="Player" parent="." instance=ExtResource("8_ukqov")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
