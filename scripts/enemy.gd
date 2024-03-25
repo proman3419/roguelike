@@ -38,7 +38,6 @@ func _on_timer_timeout():
 	pass
 
 func _on_detection_area_body_entered(body):
-	print("DET AREA")
 	if body is Player:
 		player_in_area = true
 		player = body
@@ -47,10 +46,11 @@ func _on_detection_area_body_exited(body):
 	if body is Player:
 		player_in_area = false
 
-func _on_hitbox_body_entered(body):
-	print("HITBOX")
-	if body is Projectile:
-		health -= body.damage
-		body.queue_free()
+func _on_hitbox_area_entered(area):
+	if area is Projectile:
+		health -= area.damage
+		area.queue_free()
 		if health <= 0:
 			dead = true
+			queue_free()
+	print("health: ", health)

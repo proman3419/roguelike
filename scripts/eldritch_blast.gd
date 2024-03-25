@@ -12,7 +12,7 @@ class_name EldritchBlast
 
 func _ready():
 	speed = 300
-	damage = 100
+	damage = 25
 	set_as_top_level(true)
 
 func _process(delta):
