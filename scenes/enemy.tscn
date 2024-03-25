@@ -24,7 +24,6 @@ texture = ExtResource("1_xl3b7")
 shape = SubResource("RectangleShape2D_6btiu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

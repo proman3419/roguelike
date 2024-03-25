@@ -1,11 +1,14 @@
 extends CharacterBody2D
 class_name Player
 
+var health = 100
 var speed = 200
 var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true
 var attack_repr = preload("res://scenes/eldritch_blast.tscn")
+var _rotation
+var _rotation_degrees
 
 func get_input():
 	var input = Vector2()
@@ -20,6 +23,13 @@ func get_input():
 	return input
 
 func _physics_process(_delta):
+	var mouse_pos = get_global_mouse_position()
+	$Marker2D.look_at(mouse_pos)
+	_rotation = $Marker2D.rotation
+	_rotation_degrees = $Marker2D.rotation_degrees
+	$CollisionShape2D.rotation = _rotation
+	$Sprite2D.rotation = _rotation
+	$hitbox.rotation = _rotation
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
@@ -29,8 +39,6 @@ func _physics_process(_delta):
 	attack()
 	
 func attack():
-	var mouse_pos = get_global_mouse_position()
-	$Marker2D.look_at(mouse_pos)
 	if Input.is_action_just_pressed("attack") and attack_cooldown:
 		attack_cooldown = false
 		var projectile = attack_repr.instantiate()
@@ -39,3 +47,9 @@ func attack():
 		get_tree().current_scene.add_child(projectile)
 		await get_tree().create_timer(0.4).timeout
 		attack_cooldown = true
+
+func _on_hitbox_area_entered(area):
+	print(health, area)
+	#if area is Projectile:
+		#health -= area.damage
+		#area.queue_free()

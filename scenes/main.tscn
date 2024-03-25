@@ -96,3 +96,19 @@ zoom = Vector2(4, 4)
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_b3oc5")]
 position = Vector2(217, -24)
 player = NodePath("../Player")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_b3oc5")]
+position = Vector2(268, 119)
+player = NodePath("../Player")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_b3oc5")]
+position = Vector2(453, 147)
+player = NodePath("../Player")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_b3oc5")]
+position = Vector2(516, -93)
+player = NodePath("../Player")
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_b3oc5")]
+position = Vector2(45, -166)
+player = NodePath("../Player")
