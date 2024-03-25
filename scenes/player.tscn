@@ -4,10 +4,9 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_ogsbj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01agy"]
+size = Vector2(16, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 3
 script = ExtResource("2_ogsbj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +16,5 @@ shape = SubResource("RectangleShape2D_01agy")
 texture = ExtResource("1_2vdyw")
 
 [node name="Player" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
