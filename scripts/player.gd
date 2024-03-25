@@ -17,7 +17,7 @@ func get_input():
 		input.y -= 1
 	return input
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
