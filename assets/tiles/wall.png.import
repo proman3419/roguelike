@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwi1k0kgigcoq"
-path="res://.godot/imported/eldritch_blast.png-e64da5567f8f13afe9484597740e4fe2.ctex"
+uid="uid://bimemprha4xd"
+path="res://.godot/imported/wall.png-f7e6aa960b33edcf5496f6f9fadc2ac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/eldritch_blast.png"
-dest_files=["res://.godot/imported/eldritch_blast.png-e64da5567f8f13afe9484597740e4fe2.ctex"]
+source_file="res://assets/tiles/wall.png"
+dest_files=["res://.godot/imported/wall.png-f7e6aa960b33edcf5496f6f9fadc2ac8.ctex"]
 
 [params]
 

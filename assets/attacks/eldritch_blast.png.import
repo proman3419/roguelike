@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmnfg3j07swd1"
-path="res://.godot/imported/gold.png-09fb73619791e1dbcf26d16d5d0f2d20.ctex"
+uid="uid://bwi1k0kgigcoq"
+path="res://.godot/imported/eldritch_blast.png-2931590f38ee29eaa1fe28724b17e055.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gold.png"
-dest_files=["res://.godot/imported/gold.png-09fb73619791e1dbcf26d16d5d0f2d20.ctex"]
+source_file="res://assets/attacks/eldritch_blast.png"
+dest_files=["res://.godot/imported/eldritch_blast.png-2931590f38ee29eaa1fe28724b17e055.ctex"]
 
 [params]
 

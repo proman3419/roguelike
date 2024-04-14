@@ -12,7 +12,7 @@ var damage = 10
 var player_in_detection_area = false
 var dead = false
 var attack_dist = 25
-var attack_repr = preload("res://scenes/slash.tscn")
+var attack_repr = preload("res://scenes/attacks/slash.tscn")
 var attack_cooldown = true
 
 func _ready():
@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 			makepath()
 			move()
 			if global_position.distance_to(player.position) <= attack_dist:
-				if false: #attack_cooldown:
+				if attack_cooldown: #attack_cooldown:
 					attack()
 	else:
 		$detection_area/CollisionShape2D.disabled = true

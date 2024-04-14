@@ -6,7 +6,7 @@ var speed = 200
 var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true
-var attack_repr = preload("res://scenes/eldritch_blast.tscn")
+var attack_repr = preload("res://scenes/attacks/eldritch_blast.tscn")
 var _rotation
 var _rotation_degrees
 
