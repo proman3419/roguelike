@@ -49,7 +49,7 @@ func attack():
 		attack_cooldown = true
 
 func _on_hitbox_area_entered(area):
-	print(health, area)
-	#if area is Projectile:
-		#health -= area.damage
-		#area.queue_free()
+	#print(health, area)
+	if area is Projectile and area.damage_player:
+		health -= area.damage
+		area.queue_free()

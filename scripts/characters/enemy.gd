@@ -69,7 +69,7 @@ func _on_detection_area_body_exited(body):
 		player_in_detection_area = false
 
 func _on_hitbox_area_entered(area):
-	if area is Projectile:
+	if area is Projectile and area.damage_enemy:
 		health -= area.damage
 		area.queue_free()
 		if health <= 0:
