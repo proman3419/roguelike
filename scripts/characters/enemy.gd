@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 			makepath()
 			move()
 			if global_position.distance_to(player.position) <= attack_dist:
-				if attack_cooldown: #attack_cooldown:
+				if attack_cooldown:
 					attack()
 	else:
 		$detection_area/CollisionShape2D.disabled = true
@@ -42,17 +42,12 @@ func makepath():
 	nav.target_position = player.global_position
 	
 func attack():
-	#print("attacking")
 	attack_cooldown = false
 	var projectile = attack_repr.instantiate()
-	#projectile.rotation = player._rotation_degrees - 180
-	#projectile.global_position = player.global_position
-	#projectile.rotation = player.global_position.angle_to_point(player.position)
-	#projectile.global_position = global_position
 	projectile.rotation = rotation
 	projectile.global_position = global_position
 	get_tree().current_scene.add_child(projectile)
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(projectile.cooldown).timeout
 	attack_cooldown = true
 
 func _on_timer_timeout():
@@ -75,4 +70,3 @@ func _on_hitbox_area_entered(area):
 		if health <= 0:
 			dead = true
 			queue_free()
-	#print("health: ", health)

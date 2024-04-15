@@ -45,11 +45,10 @@ func attack():
 		projectile.rotation = $Marker2D.rotation
 		projectile.global_position = $Marker2D.global_position
 		get_tree().current_scene.add_child(projectile)
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(projectile.cooldown).timeout
 		attack_cooldown = true
 
 func _on_hitbox_area_entered(area):
-	#print(health, area)
 	if area is Projectile and area.damage_player:
 		health -= area.damage
 		area.queue_free()

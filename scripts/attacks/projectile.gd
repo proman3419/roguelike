@@ -3,6 +3,7 @@ class_name Projectile
 
 var damage: int
 var speed: int
+var cooldown: float
 var travel_range: int
 var spawn_position: Vector2
 var damage_player: bool
@@ -29,7 +30,3 @@ func setup_signals():
 func _on_body_entered(body):
 	if body is TileMap:
 		queue_free()
-
-static func spawn(projectile, tree):
-	tree.current_scene.add_child(projectile)
-	await tree.create_timer(0.4).timeout
