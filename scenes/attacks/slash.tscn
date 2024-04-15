@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp4g6kedman0g"]
+
+[ext_resource type="Texture2D" uid="uid://bgop2uv2xxqqg" path="res://assets/attacks/slash.png" id="1_8k5t2"]
+[ext_resource type="Script" path="res://scripts/attacks/slash.gd" id="1_uhibq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pkidr"]
+radius = 3.5
+height = 16.0
+
+[node name="Slash" type="Area2D"]
+script = ExtResource("1_uhibq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8k5t2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+rotation = 1.5708
+scale = Vector2(0.867733, 0.954587)
+shape = SubResource("CapsuleShape2D_pkidr")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-4, 0)
+scale = Vector2(0.0684752, 0.28957)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr5ht1sbklutd"]
+
+[ext_resource type="Texture2D" uid="uid://cibiuikr55x4g" path="res://assets/characters/player.png" id="1_2vdyw"]
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="2_ogsbj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01agy"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmnrf"]
+size = Vector2(16, 16)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("2_ogsbj")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_01agy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2vdyw")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_rmnrf")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

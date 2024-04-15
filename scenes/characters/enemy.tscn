@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://lgsgv7ql6wlx"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_1cnfk"]
-[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/enemy.png" id="1_xl3b7"]
+[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_1cnfk"]
+[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/enemy.png" id="1_xl3b7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6btiu"]
 size = Vector2(16, 16)
@@ -24,7 +24,6 @@ texture = ExtResource("1_xl3b7")
 shape = SubResource("RectangleShape2D_6btiu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

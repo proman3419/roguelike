@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://do7dhm6ltia0q"]
 
-[ext_resource type="Script" path="res://scripts/eldritch_blast.gd" id="1_7mlwg"]
-[ext_resource type="Texture2D" uid="uid://bwi1k0kgigcoq" path="res://assets/eldritch_blast.png" id="1_van5w"]
+[ext_resource type="Script" path="res://scripts/attacks/eldritch_blast.gd" id="1_j68a7"]
+[ext_resource type="Texture2D" uid="uid://bwi1k0kgigcoq" path="res://assets/attacks/eldritch_blast.png" id="2_n8mhj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eqjt"]
 radius = 3.5
 height = 16.0
 
 [node name="EldritchBlast" type="Area2D"]
-script = ExtResource("1_7mlwg")
+script = ExtResource("1_j68a7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_van5w")
+texture = ExtResource("2_n8mhj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
