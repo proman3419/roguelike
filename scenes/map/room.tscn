@@ -1,0 +1,89 @@
+[gd_scene load_steps=18 format=3 uid="uid://thrn4wgt4mnl"]
+
+[ext_resource type="Script" path="res://scripts/map/room.gd" id="1_00at7"]
+[ext_resource type="Texture2D" uid="uid://bkksfml25334v" path="res://assets/tiles/door.png" id="1_cbpmt"]
+[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/enemy.png" id="2_3h71v"]
+[ext_resource type="Texture2D" uid="uid://dvk47umh1ww41" path="res://assets/tiles/floor.png" id="3_av3wt"]
+[ext_resource type="Texture2D" uid="uid://bmnfg3j07swd1" path="res://assets/tiles/gold.png" id="4_n8j67"]
+[ext_resource type="Texture2D" uid="uid://bdssm00gyl5mp" path="res://assets/tiles/health.png" id="5_65pm5"]
+[ext_resource type="Texture2D" uid="uid://cibiuikr55x4g" path="res://assets/characters/player.png" id="6_arh4s"]
+[ext_resource type="Texture2D" uid="uid://bimemprha4xd" path="res://assets/tiles/wall.png" id="7_njopj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qjkhi"]
+texture = ExtResource("1_cbpmt")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_foqlp"]
+texture = ExtResource("2_3h71v")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x46s0"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ju0uj"]
+texture = ExtResource("3_av3wt")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_x46s0")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eapdu"]
+texture = ExtResource("4_n8j67")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2fi4f"]
+texture = ExtResource("5_65pm5")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e4x7i"]
+texture = ExtResource("6_arh4s")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nro6u"]
+texture = ExtResource("7_njopj")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_cv2pu"]
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_qjkhi")
+sources/1 = SubResource("TileSetAtlasSource_foqlp")
+sources/2 = SubResource("TileSetAtlasSource_ju0uj")
+sources/3 = SubResource("TileSetAtlasSource_eapdu")
+sources/4 = SubResource("TileSetAtlasSource_2fi4f")
+sources/5 = SubResource("TileSetAtlasSource_e4x7i")
+sources/6 = SubResource("TileSetAtlasSource_nro6u")
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_00at7")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cv2pu")
+format = 2
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Entrance" type="Node" parent="."]
+
+[node name="EnemyPositions" type="Node" parent="."]
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
