@@ -78,11 +78,11 @@ script = ExtResource("1_00at7")
 tile_set = SubResource("TileSet_cv2pu")
 format = 2
 
-[node name="Doors" type="Node" parent="."]
+[node name="Doors" type="Node2D" parent="."]
 
-[node name="Entrance" type="Node" parent="."]
+[node name="Entrance" type="Node2D" parent="."]
 
-[node name="EnemyPositions" type="Node" parent="."]
+[node name="EnemyPositions" type="Node2D" parent="."]
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 

@@ -13,7 +13,7 @@ const ENEMY_SCENES: Dictionary = {
 
 var num_enemies: int
 
-@onready var tilemap: TileMap = get_node("TileMap2")
+@onready var tilemap: TileMap = get_node("TileMap")
 @onready var entrance: Node2D = get_node("Entrance")
 @onready var door_container: Node2D = get_node("Doors")
 @onready var enemy_positions_container: Node2D = get_node("EnemyPositions")
@@ -32,7 +32,7 @@ func _on_enemy_killed() -> void:
 
 func _open_doors() -> void:
 	for door in door_container.get_children():
-		door.open()
+		door.queue_free()
 
 
 func _close_entrance() -> void:
