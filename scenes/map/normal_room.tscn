@@ -13,30 +13,35 @@ size = Vector2(33, 20)
 [node name="TileMap" parent="." index="0"]
 layer_0/tile_data = PackedInt32Array(0, 6, 0, 65536, 6, 0, 131072, 6, 0, 196608, 6, 0, 262144, 6, 0, 327680, 6, 0, 393216, 6, 0, 458752, 6, 0, 1, 6, 0, 65537, 2, 0, 131073, 2, 0, 196609, 2, 0, 262145, 2, 0, 327681, 2, 0, 393217, 2, 0, 458753, 2, 0, 2, 0, 0, 65538, 2, 0, 131074, 2, 0, 196610, 2, 0, 262146, 2, 0, 327682, 2, 0, 393218, 2, 0, 458754, 2, 0, 3, 0, 0, 65539, 2, 0, 131075, 2, 0, 196611, 2, 0, 262147, 2, 0, 327683, 2, 0, 393219, 2, 0, 458755, 2, 0, 4, 6, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 327684, 2, 0, 393220, 2, 0, 458756, 2, 0, 5, 6, 0, 65541, 2, 0, 131077, 2, 0, 196613, 2, 0, 262149, 2, 0, 327685, 2, 0, 393221, 2, 0, 458757, 2, 0, 6, 6, 0, 65542, 2, 0, 131078, 2, 0, 196614, 2, 0, 262150, 2, 0, 327686, 2, 0, 393222, 2, 0, 458758, 2, 0, 7, 6, 0, 65543, 2, 0, 131079, 2, 0, 196615, 2, 0, 262151, 2, 0, 327687, 2, 0, 393223, 2, 0, 458759, 2, 0, 8, 6, 0, 65544, 2, 0, 131080, 2, 0, 196616, 2, 0, 262152, 2, 0, 327688, 2, 0, 393224, 2, 0, 458760, 2, 0, 524288, 6, 0, 589824, 6, 0, 655360, 6, 0, 720896, 6, 0, 786432, 6, 0, 524289, 2, 0, 589825, 2, 0, 655361, 2, 0, 720897, 2, 0, 786433, 6, 0, 524290, 2, 0, 589826, 2, 0, 655362, 2, 0, 720898, 2, 0, 786434, 6, 0, 524291, 2, 0, 589827, 2, 0, 655363, 2, 0, 720899, 2, 0, 786435, 6, 0, 524292, 2, 0, 589828, 2, 0, 655364, 2, 0, 720900, 2, 0, 786436, 2, 0, 524293, 2, 0, 589829, 2, 0, 655365, 2, 0, 720901, 2, 0, 786437, 2, 0, 524294, 2, 0, 589830, 2, 0, 655366, 2, 0, 720902, 2, 0, 786438, 6, 0, 524295, 2, 0, 589831, 2, 0, 655367, 2, 0, 720903, 2, 0, 786439, 6, 0, 524296, 2, 0, 589832, 2, 0, 655368, 2, 0, 720904, 2, 0, 786440, 6, 0, 786441, 6, 0, 720905, 6, 0, 655369, 6, 0, 589833, 6, 0, 524297, 6, 0, 9, 6, 0, 65545, 6, 0, 131081, 6, 0, 196617, 6, 0, 262153, 6, 0, 327689, 6, 0, 393225, 6, 0, 458761, 6, 0)
 
+[node name="Doors" parent="." index="1"]
+position = Vector2(1, 1)
+
 [node name="Door" type="StaticBody2D" parent="Doors" index="0"]
+position = Vector2(47, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/Door" index="0"]
-position = Vector2(48, 8)
 shape = SubResource("RectangleShape2D_htbkn")
 
-[node name="Marker2D" type="Marker2D" parent="Entrance" index="0"]
-position = Vector2(71, 199)
+[node name="Entrance" parent="." index="2"]
+position = Vector2(80, 193)
 
-[node name="Marker2D2" type="Marker2D" parent="Entrance" index="1"]
-position = Vector2(89, 199)
+[node name="Marker2D" type="Marker2D" parent="Entrance" index="0"]
+position = Vector2(-9, 6)
+
+[node name="Position2D2" type="Marker2D" parent="Entrance" index="1"]
+position = Vector2(8, 6)
 
 [node name="Marker2D" type="Marker2D" parent="EnemyPositions" index="0"]
-position = Vector2(33, 146)
+position = Vector2(40, 101)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemyPositions" index="1"]
-position = Vector2(110, 146)
+position = Vector2(117, 101)
 
 [node name="Marker2D3" type="Marker2D" parent="EnemyPositions" index="2"]
-position = Vector2(73, 93)
+position = Vector2(80, 48)
 
 [node name="PlayerDetector" parent="." index="4"]
-position = Vector2(80, 207)
+position = Vector2(80, 182)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
-position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_hhr6e")
