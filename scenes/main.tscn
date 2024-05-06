@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7wi5ui6dredy"]
+[gd_scene load_steps=21 format=3 uid="uid://c7wi5ui6dredy"]
 
 [ext_resource type="Texture2D" uid="uid://bkksfml25334v" path="res://assets/tiles/door.png" id="1_oauld"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_uoe6u"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cibiuikr55x4g" path="res://assets/characters/player.png" id="6_34jwm"]
 [ext_resource type="Texture2D" uid="uid://bimemprha4xd" path="res://assets/tiles/wall.png" id="7_ca3s0"]
 [ext_resource type="PackedScene" uid="uid://cr5ht1sbklutd" path="res://scenes/characters/player.tscn" id="8_ukqov"]
+[ext_resource type="PackedScene" uid="uid://lgsgv7ql6wlx" path="res://scenes/characters/enemy.tscn" id="9_b3oc5"]
+[ext_resource type="PackedScene" uid="uid://qajmqhslusky" path="res://scenes/hud.tscn" id="10_7vhq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qjkhi"]
 texture = ExtResource("1_oauld")
@@ -79,6 +81,7 @@ script = ExtResource("1_uoe6u")
 tile_set = SubResource("TileSet_31pv2")
 format = 2
 
-[node name="Player" parent="." instance=ExtResource("8_ukqov")]
+[node name="Player" parent="." node_paths=PackedStringArray("hud") instance=ExtResource("8_ukqov")]
+hud = NodePath("Hud")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

@@ -7,8 +7,14 @@ var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true
 var attack_repr = preload("res://scenes/attacks/eldritch_blast.tscn")
+var gold = 100
 var _rotation
 var _rotation_degrees
+@export var hud: Hud
+
+func _ready():
+	hud.update_health(health)
+	hud.update_gold(gold)
 
 func get_input():
 	var input = Vector2()
@@ -52,3 +58,6 @@ func _on_hitbox_area_entered(area):
 	if area is Projectile and area.damage_player:
 		health -= area.damage
 		area.queue_free()
+		if health <= 0:
+			hud.show_game_over(gold)
+		hud.update_health(health)
