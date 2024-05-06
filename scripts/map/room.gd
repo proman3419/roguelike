@@ -25,7 +25,6 @@ func _ready() -> void:
 
 
 func _on_enemy_killed() -> void:
-	print(num_enemies)
 	num_enemies -= 1
 	if num_enemies == 0:
 		_open_doors()
@@ -34,13 +33,14 @@ func _on_enemy_killed() -> void:
 func _open_doors() -> void:
 	for door in door_container.get_children():
 		door.queue_free()
-
-
+		tilemap.set_cell(0, door.position/16, 2, Vector2i.ZERO)
+		tilemap.set_cell(0, door.position/16+Vector2.LEFT, 2, Vector2i.ZERO)
+		
 func _close_entrance() -> void:
 	for entry_position in entrance.get_children():
-		print(tilemap.local_to_map(entry_position.position))
-		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position), 0, Vector2i.ZERO)
-		tilemap.set_cell(0, tilemap.local_to_map(entry_position.position) + Vector2i.DOWN, 0, Vector2i.ZERO)
+		print(entry_position.position)
+		tilemap.set_cell(0, entry_position.position/16, 0, Vector2.ZERO)
+		tilemap.set_cell(0, entry_position.position/16 + Vector2.RIGHT, 0, Vector2i.ZERO)
 
 
 func _spawn_enemies() -> void:
@@ -64,6 +64,7 @@ func _spawn_enemies() -> void:
 
 func _on_PlayerDetector_body_entered(_body: CharacterBody2D) -> void:
 	player_detector.queue_free()
+	print(num_enemies)
 	if num_enemies > 0:
 		_close_entrance()
 		_spawn_enemies()

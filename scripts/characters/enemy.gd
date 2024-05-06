@@ -17,7 +17,8 @@ var attack_cooldown = true
 
 func _ready():
 	get_node("Timer").timeout.connect(_on_timer_timeout)
-	
+	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed"))
+
 func _physics_process(_delta: float) -> void:
 	if !dead:
 		$detection_area/CollisionShape2D.disabled = false
