@@ -14,16 +14,16 @@ var HEIGHT = 40
 var FLOOR_TILE_ID = 2
 var WALL_TILE_ID = 6
 var TILE_SIZE = 16
+var RNG = RandomNumberGenerator.new()
 
 var level = 1
 var enemies_cnt = 0
 var gold = 0
 
+
 func _ready() -> void:
 	hud.update_gold(gold)
-	spawn_player()
-	create_map()
-	spawn_enemies(level * 2)
+	level_init()
 
 
 func _on_enemy_killed() -> void:
@@ -37,11 +37,11 @@ func _on_enemy_killed() -> void:
 func create_map():
 	for x in range(WIDTH):
 		for y in range(HEIGHT):
-			if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1:
-				tile_map.set_cell(0, Vector2i(x, y), WALL_TILE_ID, Vector2i.ZERO)
-			else:
-				tile_map.set_cell(0, Vector2i(x, y), FLOOR_TILE_ID, Vector2i.ZERO)
-
+			var tile_id = FLOOR_TILE_ID
+			if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1 || RNG.randf() < 0.01:
+				tile_id = WALL_TILE_ID
+			tile_map.set_cell(0, Vector2i(x, y), tile_id, Vector2i.ZERO)
+				
 
 func spawn_player():
 	player.position = Vector2(WIDTH/2*TILE_SIZE, HEIGHT/2*TILE_SIZE)
@@ -67,8 +67,13 @@ func spawn_enemy(x, y):
 
 func level_up():
 	level += 1
-	spawn_enemies((level + 1) * 2)
-	
+	level_init()
+
+
+func level_init():
+	spawn_player()
+	create_map()
+	spawn_enemies(level * 2)
 
 func range_to_array(range):
 	var array = []
