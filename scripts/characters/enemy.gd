@@ -6,9 +6,10 @@ var speed = 50
 var friction = 0.1
 var acceleration = 0.1
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
-@export var player : Player
+@onready var player: Player = get_parent().get_node("Player")
 var health = 100
 var damage = 10
+var player_detection_area_enabled = false
 var player_in_detection_area = false
 var dead = false
 var attack_dist = 25
@@ -17,11 +18,12 @@ var attack_cooldown = true
 
 func _ready():
 	get_node("Timer").timeout.connect(_on_timer_timeout)
+	var __ = connect("tree_exited", Callable(get_parent(), "_on_enemy_killed"))
 	
 func _physics_process(_delta: float) -> void:
 	if !dead:
 		$detection_area/CollisionShape2D.disabled = false
-		if player_in_detection_area:
+		if player_in_detection_area || !player_detection_area_enabled:
 			makepath()
 			move()
 			if global_position.distance_to(player.position) <= attack_dist:
