@@ -3,6 +3,7 @@ extends Node
 
 @onready var tile_map: TileMap = get_node("TileMap")
 @onready var player: Player = get_node("Player")
+@onready var hud: Hud = get_node("Hud")
 
 const ENEMY_SCENES: Dictionary = {
 	"SLIME": preload("res://scenes/characters/enemy.tscn")
@@ -14,20 +15,21 @@ var FLOOR_TILE_ID = 2
 var WALL_TILE_ID = 6
 var TILE_SIZE = 16
 
-var level = 0
+var level = 1
 var enemies_cnt = 0
+var gold = 0
 
 func _ready() -> void:
+	hud.update_gold(gold)
 	spawn_player()
 	create_map()
-	#while true:
-	spawn_enemies((level + 1) * 2)
-		#while enemies_cnt > 0:
-			#pass
+	spawn_enemies(level * 2)
 
 
 func _on_enemy_killed() -> void:
 	enemies_cnt -= 1
+	gold += level * 10
+	hud.update_gold(gold)
 	if enemies_cnt == 0:
 		level_up()
 

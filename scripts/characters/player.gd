@@ -10,11 +10,10 @@ var attack_repr = preload("res://scenes/attacks/eldritch_blast.tscn")
 var gold = 100
 var _rotation
 var _rotation_degrees
-@export var hud: Hud
+@onready var hud: Hud = get_parent().get_node("Hud")
 
 func _ready():
 	hud.update_health(health)
-	hud.update_gold(gold)
 
 func get_input():
 	var input = Vector2()

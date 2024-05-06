@@ -11,4 +11,5 @@ func update_gold(gold):
 func show_game_over(gold):
 	$Gold.visible = false
 	$Health.visible = false
+	$TransitionBackground.visible = true
 	$GameOver.text = "                You died\ncollected " + str(gold) + " gold pieces"
