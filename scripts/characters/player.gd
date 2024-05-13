@@ -7,7 +7,6 @@ var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true
 var attack_repr = preload("res://scenes/attacks/eldritch_blast.tscn")
-var gold = 100
 var _rotation
 var _rotation_degrees
 @onready var hud: Hud = get_parent().get_node("Hud")
@@ -59,5 +58,5 @@ func _on_hitbox_area_entered(area):
 		health -= area.damage
 		area.queue_free()
 		if health <= 0:
-			hud.show_game_over(gold, main.level)
+			hud.show_game_over(main.gold, main.level)
 		hud.update_health(health)
