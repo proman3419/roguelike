@@ -13,6 +13,7 @@ size = Vector2(16, 16)
 radius = 88.0057
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_1cnfk")

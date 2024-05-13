@@ -9,12 +9,15 @@ const ENEMY_SCENES: Dictionary = {
 	"SLIME": preload("res://scenes/characters/enemy.tscn")
 }
 
-var WIDTH = 30
-var HEIGHT = 40
+var WIDTH = 40
+var HEIGHT = 30
 var FLOOR_TILE_ID = 2
 var WALL_TILE_ID = 6
 var TILE_SIZE = 16
 var RNG = RandomNumberGenerator.new()
+var WANDERS_CNT = 1000
+var MAX_WANDER_DISTANCE = 1000
+var MIN_ENEMY_SPAWN_DISTANCE = 5
 
 var level = 1
 var enemies_cnt = 0
@@ -34,32 +37,85 @@ func _on_enemy_killed() -> void:
 		level_up()
 
 
-func create_map():
+func spawn_basic_map():
 	for x in range(WIDTH):
 		for y in range(HEIGHT):
 			var tile_id = FLOOR_TILE_ID
 			if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1 || RNG.randf() < 0.01:
 				tile_id = WALL_TILE_ID
 			tile_map.set_cell(0, Vector2i(x, y), tile_id, Vector2i.ZERO)
-				
+
+
+func generate_map():
+	# 0 - floor
+	# 1 - wall
+	var map = []
+	for x in range(WIDTH):
+		map.append([])
+		for y in range(HEIGHT):
+			map[x].append(1)
+	
+	var path = []
+	wander(map, path, WIDTH/2, HEIGHT/2)
+	for i in range(WANDERS_CNT):
+		var path_elem = path[RNG.randi_range(0, len(path)-1)]
+		wander(map, path, path_elem[0], path_elem[1])
+
+	#for x in range(WIDTH):
+		#print(map[x])
+	
+	return [map, path]
+
+
+func spawn_map(map):
+	for x in range(WIDTH):
+		for y in range(HEIGHT):
+			var tile_id = FLOOR_TILE_ID
+			if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1 || map[x][y] == 1:
+				tile_id = WALL_TILE_ID
+			tile_map.set_cell(0, Vector2i(x, y), tile_id, Vector2i.ZERO)
+
+
+func wander(map, path, x, y):
+	for i in range(MAX_WANDER_DISTANCE):
+		var direction = RNG.randf()
+		if direction < 0.25: # up
+			y -= 1
+		elif direction < 0.5: # right
+			x += 1
+		elif direction < 0.75: # down
+			y += 1
+		else: # left
+			x -= 1
+		if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1 || path.has([x, y]):
+			break
+		path.append([x, y])
+		map[x][y] = 0
+
 
 func spawn_player():
 	player.position = Vector2(WIDTH/2*TILE_SIZE, HEIGHT/2*TILE_SIZE)
 
 
-func spawn_enemies(enemies_to_spawn):
-	var x_coords = range_to_array(range(1, WIDTH-1))
-	x_coords.shuffle()
-	var y_coords = range_to_array(range(1, HEIGHT-1))
-	y_coords.shuffle()
-	for i in range(enemies_to_spawn):
-		spawn_enemy(x_coords[i] * TILE_SIZE, y_coords[i] * TILE_SIZE)
-		enemies_cnt += 1
+func spawn_enemies(path, enemies_to_spawn):
+	while enemies_cnt < enemies_to_spawn:
+		if len(path) == 0:
+			print("Not enough space to spawn all enemies")
+			return
+		var path_i = RNG.randi_range(0, len(path)-1)
+		var path_elem = path[path_i]
+		if get_distance_to_player_spawn(path_elem[0], path_elem[1]) > MIN_ENEMY_SPAWN_DISTANCE:
+			spawn_enemy(path_elem[0] * TILE_SIZE, path_elem[1] * TILE_SIZE)
+			enemies_cnt += 1
+		path.remove_at(path_i)
+
+
+func get_distance_to_player_spawn(x, y):
+	return sqrt(pow(x - WIDTH/2, 2) + pow(y - HEIGHT/2, 2))
 
 
 func spawn_enemy(x, y):
 	var enemy: CharacterBody2D
-	print(x, y)
 	enemy = ENEMY_SCENES.SLIME.instantiate()
 	enemy.position = Vector2(x, y)
 	call_deferred("add_child", enemy)
@@ -72,8 +128,11 @@ func level_up():
 
 func level_init():
 	spawn_player()
-	create_map()
-	spawn_enemies(level * 2)
+	var generate_map_res = generate_map()
+	var map = generate_map_res[0]
+	var path = generate_map_res[1]
+	spawn_map(map)
+	spawn_enemies(path, level * 2)
 
 func range_to_array(range):
 	var array = []

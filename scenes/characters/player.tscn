@@ -10,6 +10,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("2_ogsbj")
 
 [node name="Marker2D" type="Marker2D" parent="."]
