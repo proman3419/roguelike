@@ -1,4 +1,5 @@
 extends Node
+class_name Main
 
 
 @onready var tile_map: TileMap = get_node("TileMap")
@@ -25,7 +26,6 @@ var gold = 0
 
 
 func _ready() -> void:
-	hud.update_gold(gold)
 	level_init()
 
 
@@ -127,6 +127,8 @@ func level_up():
 
 
 func level_init():
+	hud.update_gold(gold)
+	hud.update_level(level)
 	spawn_player()
 	var generate_map_res = generate_map()
 	var map = generate_map_res[0]

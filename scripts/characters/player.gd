@@ -11,6 +11,7 @@ var gold = 100
 var _rotation
 var _rotation_degrees
 @onready var hud: Hud = get_parent().get_node("Hud")
+@onready var main: Main = get_parent()
 
 func _ready():
 	hud.update_health(health)
@@ -58,5 +59,5 @@ func _on_hitbox_area_entered(area):
 		health -= area.damage
 		area.queue_free()
 		if health <= 0:
-			hud.show_game_over(gold)
+			hud.show_game_over(gold, main.level)
 		hud.update_health(health)
