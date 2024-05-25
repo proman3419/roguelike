@@ -123,6 +123,9 @@ func spawn_enemy(x, y):
 
 func level_up():
 	level += 1
+	hud.next_level_transition()
+	while not hud.powerup_pressed:
+		await get_tree().create_timer(1).timeout
 	level_init()
 
 
@@ -141,3 +144,6 @@ func range_to_array(range):
 	for i in range:
 		array.append(i)
 	return array
+
+func add_gold(value):
+	gold += value

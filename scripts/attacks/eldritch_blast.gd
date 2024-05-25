@@ -4,7 +4,7 @@ class_name EldritchBlast
 func _ready():
 	setup_signals()
 	speed = 300
-	damage = 100
+	damage = 25
 	cooldown = 0.3
 	travel_range = 100
 	spawn_position = global_position

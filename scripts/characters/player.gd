@@ -7,6 +7,7 @@ var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true
 var attack_repr = preload("res://scenes/attacks/eldritch_blast.tscn")
+var attack_damage = 25
 var _rotation
 var _rotation_degrees
 @onready var hud: Hud = get_parent().get_node("Hud")
@@ -47,6 +48,7 @@ func attack():
 	if Input.is_action_just_pressed("attack") and attack_cooldown:
 		attack_cooldown = false
 		var projectile = attack_repr.instantiate()
+		projectile.damage = attack_damage
 		projectile.rotation = $Marker2D.rotation
 		projectile.global_position = $Marker2D.global_position
 		get_tree().current_scene.add_child(projectile)
@@ -60,3 +62,9 @@ func _on_hitbox_area_entered(area):
 		if health <= 0:
 			hud.show_game_over(main.gold, main.level)
 		hud.update_health(health)
+
+func increase_attack_damage(value):
+	attack_damage += value
+
+func increase_health(value):
+	health += value
