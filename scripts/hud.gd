@@ -6,12 +6,13 @@ var RNG = RandomNumberGenerator.new()
 @onready var player: Player = get_parent().get_node("Player")
 @onready var main: Main = get_parent()
 var powerup_pressed = false
-var powerup_names = ["health", "gold", "attack damage"]
+var powerup_names = ["health", "gold", "damage", "cooldown"]
 var powerup_textures = [preload("res://assets/tiles/health.png"), 
 						preload("res://assets/tiles/gold.png"),
-						preload("res://assets/tiles/door.png")]
-var powerup_min_vals = [1, 10, 5]
-var powerup_max_vals = [50, 9999, 25]
+						preload("res://assets/tiles/door.png"),
+						preload("res://assets/tiles/floor.png")]
+var powerup_min_vals = [10, 10, 25, 0.1]
+var powerup_max_vals = [50, 200, 50, 0.4]
 
 var selected_powerup_is = [-1, -1, -1]
 var selected_powerup_values = [0, 0, 0]
@@ -19,6 +20,14 @@ var selected_powerup_values = [0, 0, 0]
 
 func update_health(health):
 	$Health.text = "HP: " + str(health)
+
+
+func update_damage(damage):
+	$Damage.text = "DMG: " + str(damage)
+	
+
+func update_cooldown(cooldown):
+	$Cooldown.text = "CD: " + str(snapped(cooldown, 0.01))
 
 
 func update_gold(gold):
@@ -34,6 +43,8 @@ func show_game_over(gold, level):
 	$PowerupText3.visible = false
 	$Gold.visible = false
 	$Health.visible = false
+	$Damage.visible = false
+	$Cooldown.visible = false
 	$TransitionBackground.visible = true
 	$GameOver.text = "[center]%s[/center]" % ["DEFEATED\nachieved level: " + str(level) + "\ncollected gold: " + str(gold)]
 
@@ -47,7 +58,7 @@ func next_level_transition():
 	$TransitionBackground.visible = true
 	select_random_powerup_with_value(0)
 	select_random_powerup_with_value(1)
-	select_random_powerup_with_value(2)	
+	select_random_powerup_with_value(2)
 	$Powerup1.visible = true
 	$PowerupText1.visible = true
 	$Powerup2.visible = true
@@ -68,7 +79,10 @@ func next_level_transition():
 func select_random_powerup_with_value(powerup_slot):
 	var i = RNG.randi_range(0, len(powerup_names)-1)
 	var value = RNG.randf_range(powerup_min_vals[i], powerup_max_vals[i])
-	value = int(value)
+	if powerup_names[i] == "cooldown":
+		value = snapped(value, 0.01)
+	else:
+		value = int(value)
 	selected_powerup_is[powerup_slot] = i
 	selected_powerup_values[powerup_slot] = value
 	var texture = powerup_textures[i]
@@ -90,10 +104,12 @@ func apply_powerup(powerup_slot):
 	match powerup_names[i]:
 		"health":
 			player.increase_health(value)
-		"attack damage":
-			player.increase_attack_damage(value)
+		"damage":
+			player.increase_damage(value)
 		"gold":
 			main.add_gold(value)
+		"cooldown":
+			player.lower_cooldown(value)
 
 func _on_powerup_1_pressed():
 	apply_powerup(0)

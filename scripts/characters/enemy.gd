@@ -67,7 +67,7 @@ func _on_detection_area_body_exited(body):
 
 func _on_hitbox_area_entered(area):
 	if area is Projectile and area.damage_enemy:
-		health -= area.damage
+		health -= player.damage # :)
 		area.queue_free()
 		if health <= 0:
 			dead = true

@@ -132,6 +132,8 @@ func level_up():
 func level_init():
 	hud.update_gold(gold)
 	hud.update_level(level)
+	hud.update_cooldown(player.cooldown)
+	hud.update_damage(player.damage)
 	spawn_player()
 	var generate_map_res = generate_map()
 	var map = generate_map_res[0]
