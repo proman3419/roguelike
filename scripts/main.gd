@@ -23,6 +23,7 @@ var MIN_ENEMY_SPAWN_DISTANCE = 5
 var level = 1
 var enemies_cnt = 0
 var gold = 0
+var game_over = false
 
 
 func _ready() -> void:
@@ -31,9 +32,8 @@ func _ready() -> void:
 
 func _on_enemy_killed() -> void:
 	enemies_cnt -= 1
-	gold += level * 10
-	hud.update_gold(gold)
-	if enemies_cnt == 0:
+	add_gold(level * 10)
+	if enemies_cnt == 0 and not game_over:
 		level_up()
 
 
@@ -139,11 +139,14 @@ func level_init():
 	spawn_map(map)
 	spawn_enemies(path, level * 2)
 
+
 func range_to_array(range):
 	var array = []
 	for i in range:
 		array.append(i)
 	return array
 
+
 func add_gold(value):
 	gold += value
+	hud.update_gold(gold)

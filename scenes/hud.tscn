@@ -80,6 +80,21 @@ grow_vertical = 2
 texture_normal = ExtResource("2_agv1r")
 stretch_mode = 0
 
+[node name="PowerupText1" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 30.0
+offset_right = -80.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
 [node name="Powerup2" type="TextureButton" parent="."]
 visible = false
 anchors_preset = 8
@@ -96,6 +111,21 @@ grow_vertical = 2
 texture_normal = ExtResource("3_hqo2s")
 stretch_mode = 0
 
+[node name="PowerupText2" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
 [node name="Powerup3" type="TextureButton" parent="."]
 visible = false
 anchors_preset = 8
@@ -111,6 +141,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_agv1r")
 stretch_mode = 0
+
+[node name="PowerupText3" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = 30.0
+offset_right = 160.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
 
 [connection signal="pressed" from="Powerup1" to="." method="_on_powerup_1_pressed"]
 [connection signal="pressed" from="Powerup2" to="." method="_on_powerup_2_pressed"]

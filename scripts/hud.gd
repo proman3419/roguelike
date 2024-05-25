@@ -27,8 +27,11 @@ func update_gold(gold):
 
 func show_game_over(gold, level):
 	$Powerup1.visible = false
+	$PowerupText1.visible = false
 	$Powerup2.visible = false
+	$PowerupText2.visible = false
 	$Powerup3.visible = false
+	$PowerupText3.visible = false
 	$Gold.visible = false
 	$Health.visible = false
 	$TransitionBackground.visible = true
@@ -46,34 +49,44 @@ func next_level_transition():
 	select_random_powerup_with_value(1)
 	select_random_powerup_with_value(2)	
 	$Powerup1.visible = true
+	$PowerupText1.visible = true
 	$Powerup2.visible = true
+	$PowerupText2.visible = true
 	$Powerup3.visible = true
+	$PowerupText3.visible = true
 	while not powerup_pressed:
 		await get_tree().create_timer(1).timeout
 	$Powerup1.visible = false
+	$PowerupText1.visible = false
 	$Powerup2.visible = false
+	$PowerupText2.visible = false
 	$Powerup3.visible = false
+	$PowerupText3.visible = false
 	$TransitionBackground.visible = false
 
 
 func select_random_powerup_with_value(powerup_slot):
 	var i = RNG.randi_range(0, len(powerup_names)-1)
 	var value = RNG.randf_range(powerup_min_vals[i], powerup_max_vals[i])
+	value = int(value)
 	selected_powerup_is[powerup_slot] = i
 	selected_powerup_values[powerup_slot] = value
 	var texture = powerup_textures[i]
 	match powerup_slot:
 		0:
 			$Powerup1.texture_normal = texture
+			$PowerupText1.text = "[center]%s[/center]" % [str(value)]
 		1:
 			$Powerup2.texture_normal = texture
+			$PowerupText2.text = "[center]%s[/center]" % [str(value)]
 		2:
 			$Powerup3.texture_normal = texture
+			$PowerupText3.text = "[center]%s[/center]" % [str(value)]
 
 
 func apply_powerup(powerup_slot):
 	var i = selected_powerup_is[powerup_slot]
-	var value = selected_powerup_values[i]
+	var value = selected_powerup_values[powerup_slot]
 	match powerup_names[i]:
 		"health":
 			player.increase_health(value)

@@ -60,6 +60,7 @@ func _on_hitbox_area_entered(area):
 		health -= area.damage
 		area.queue_free()
 		if health <= 0:
+			main.game_over = true
 			hud.show_game_over(main.gold, main.level)
 		hud.update_health(health)
 
@@ -68,3 +69,4 @@ func increase_attack_damage(value):
 
 func increase_health(value):
 	health += value
+	hud.update_health(health)
