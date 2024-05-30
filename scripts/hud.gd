@@ -7,10 +7,10 @@ var RNG = RandomNumberGenerator.new()
 @onready var main: Main = get_parent()
 var powerup_pressed = false
 var powerup_names = ["health", "gold", "damage", "cooldown"]
-var powerup_textures = [preload("res://assets/tiles/health.png"), 
-						preload("res://assets/tiles/gold.png"),
-						preload("res://assets/tiles/door.png"),
-						preload("res://assets/tiles/floor.png")]
+var powerup_textures = [preload("res://assets/powerups/health.png"), 
+						preload("res://assets/powerups/gold.png"),
+						preload("res://assets/powerups/damage.png"),
+						preload("res://assets/powerups/cooldown.png")]
 var powerup_min_vals = [10, 10, 25, 0.1]
 var powerup_max_vals = [50, 200, 50, 0.4]
 

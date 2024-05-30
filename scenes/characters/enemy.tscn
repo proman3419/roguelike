@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/enemy.png" id="1_xl3b7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6btiu"]
-size = Vector2(16, 16)
+size = Vector2(12, 13.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stb47"]
-size = Vector2(16, 16)
+size = Vector2(12, 13.3333)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k83vb"]
 radius = 88.0057
@@ -22,6 +22,7 @@ script = ExtResource("1_1cnfk")
 texture = ExtResource("1_xl3b7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.666667, 0)
 shape = SubResource("RectangleShape2D_6btiu")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -33,6 +34,7 @@ autostart = true
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-0.666667, 0)
 shape = SubResource("RectangleShape2D_stb47")
 
 [node name="detection_area" type="Area2D" parent="."]
