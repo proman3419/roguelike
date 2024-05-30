@@ -66,6 +66,8 @@ func next_level_transition():
 	$Powerup3.visible = true
 	$PowerupText3.visible = true
 	while not powerup_pressed:
+		if get_tree() == null:
+			break
 		await get_tree().create_timer(1).timeout
 	$Powerup1.visible = false
 	$PowerupText1.visible = false

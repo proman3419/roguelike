@@ -8,6 +8,7 @@ radius = 3.5
 height = 16.0
 
 [node name="EldritchBlast" type="Area2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_j68a7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

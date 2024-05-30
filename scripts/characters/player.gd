@@ -32,11 +32,12 @@ func get_input():
 func _physics_process(_delta):
 	var mouse_pos = get_global_mouse_position()
 	$Marker2D.look_at(mouse_pos)
-	_rotation = $Marker2D.rotation
 	_rotation_degrees = $Marker2D.rotation_degrees
-	$CollisionShape2D.rotation = _rotation
-	$Sprite2D.rotation = _rotation
-	$hitbox.rotation = _rotation
+	var face_cursor_degrees = _rotation_degrees - 90
+	$CollisionShape2D.rotation_degrees = face_cursor_degrees
+	$Sprite2D.rotation_degrees = face_cursor_degrees
+	$hitbox.rotation_degrees = face_cursor_degrees
+	$AttackSpawn.rotation_degrees = face_cursor_degrees
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
@@ -52,7 +53,7 @@ func attack():
 		projectile.damage = damage # not working :)
 		projectile.cooldown = cooldown # same
 		projectile.rotation = $Marker2D.rotation
-		projectile.global_position = $Marker2D.global_position
+		projectile.global_position = $AttackSpawn.global_position
 		get_tree().current_scene.add_child(projectile)
 		await get_tree().create_timer(cooldown).timeout
 		attack_cooldown = true

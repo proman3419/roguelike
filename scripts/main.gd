@@ -125,6 +125,8 @@ func level_up():
 	level += 1
 	hud.next_level_transition()
 	while not hud.powerup_pressed:
+		if get_tree() == null:
+			break
 		await get_tree().create_timer(1).timeout
 	level_init()
 
