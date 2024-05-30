@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://c7wi5ui6dredy"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_uoe6u"]
-[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/enemy.png" id="2_8qr8x"]
+[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/slime.png" id="2_8qr8x"]
 [ext_resource type="Texture2D" uid="uid://dvk47umh1ww41" path="res://assets/tiles/floor.png" id="3_eiuga"]
 [ext_resource type="Texture2D" uid="uid://cibiuikr55x4g" path="res://assets/characters/player.png" id="6_34jwm"]
 [ext_resource type="Texture2D" uid="uid://bimemprha4xd" path="res://assets/tiles/wall.png" id="7_ca3s0"]

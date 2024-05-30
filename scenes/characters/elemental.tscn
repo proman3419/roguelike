@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://lgsgv7ql6wlx"]
 
-[ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_1cnfk"]
-[ext_resource type="Texture2D" uid="uid://6qn8canp5clq" path="res://assets/characters/enemy.png" id="1_xl3b7"]
+[ext_resource type="Script" path="res://scripts/characters/elemental.gd" id="1_fwii5"]
+[ext_resource type="Texture2D" uid="uid://bcjhr55gitgjf" path="res://assets/characters/elemental.png" id="2_otoyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6btiu"]
 size = Vector2(12, 13.3333)
@@ -16,10 +16,10 @@ radius = 88.0057
 scale = Vector2(0.75, 0.75)
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_1cnfk")
+script = ExtResource("1_fwii5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xl3b7")
+texture = ExtResource("2_otoyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.666667, 0)

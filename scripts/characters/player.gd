@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var health = 100
-var speed = 200
+var speed = 100
 var friction = 0.1
 var acceleration = 0.1
 var attack_cooldown = true

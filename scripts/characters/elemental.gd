@@ -1,19 +1,19 @@
 extends CharacterBody2D
-class_name Enemy
+class_name Elemental
 
 var direction : Vector2 = Vector2()
-var speed = 50
+var speed = 20
 var friction = 0.1
 var acceleration = 0.1
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var player: Player = get_parent().get_node("Player")
 var health = 100
-var damage = 10
+var damage = 15
 var player_detection_area_enabled = false
 var player_in_detection_area = false
 var dead = false
-var attack_dist = 25
-var attack_repr = preload("res://scenes/attacks/slash.tscn")
+var attack_dist = 200
+var attack_repr = preload("res://scenes/attacks/fire_bolt.tscn")
 var attack_cooldown = true
 
 func _ready():

@@ -7,7 +7,8 @@ class_name Main
 @onready var hud: Hud = get_node("Hud")
 
 const ENEMY_SCENES: Dictionary = {
-	"SLIME": preload("res://scenes/characters/enemy.tscn")
+	"SLIME": preload("res://scenes/characters/slime.tscn"),
+	"ELEMENTAL": preload("res://scenes/characters/elemental.tscn")
 }
 
 var WIDTH = 40
@@ -116,7 +117,10 @@ func get_distance_to_player_spawn(x, y):
 
 func spawn_enemy(x, y):
 	var enemy: CharacterBody2D
-	enemy = ENEMY_SCENES.SLIME.instantiate()
+	if RNG.randf() < min(0.6, level * 0.05):
+		enemy = ENEMY_SCENES.ELEMENTAL.instantiate()
+	else:
+		enemy = ENEMY_SCENES.SLIME.instantiate()
 	enemy.position = Vector2(x, y)
 	call_deferred("add_child", enemy)
 

@@ -1,11 +1,12 @@
 extends Projectile
-class_name Slash
+class_name FireBolt
 
 func _ready():
+	setup_signals()
 	speed = 300
-	damage = 30
-	cooldown = 0.5
-	travel_range = 100
+	damage = 15
+	cooldown = 1.5
+	travel_range = 200
 	spawn_position = global_position
 	damage_player = true
 	damage_enemy = false
