@@ -6,13 +6,14 @@ var RNG = RandomNumberGenerator.new()
 @onready var player: Player = get_parent().get_node("Player")
 @onready var main: Main = get_parent()
 var powerup_pressed = false
-var powerup_names = ["health", "gold", "damage", "cooldown"]
+var powerup_names = ["health", "gold", "damage", "cooldown", "speed"]
 var powerup_textures = [preload("res://assets/powerups/health.png"), 
 						preload("res://assets/powerups/gold.png"),
 						preload("res://assets/powerups/damage.png"),
-						preload("res://assets/powerups/cooldown.png")]
-var powerup_min_vals = [10, 10, 25, 0.1]
-var powerup_max_vals = [50, 200, 50, 0.4]
+						preload("res://assets/powerups/cooldown.png"),
+						preload("res://assets/powerups/speed.png")]
+var powerup_min_vals = [10, 10, 25, 0.1, 2]
+var powerup_max_vals = [50, 200, 50, 0.4, 10]
 
 var selected_powerup_is = [-1, -1, -1]
 var selected_powerup_values = [0, 0, 0]
@@ -34,6 +35,10 @@ func update_gold(gold):
 	$Gold.text = "GOLD: " + str(gold)
 
 
+func update_speed(speed):
+	$Speed.text = "SPEED: " + str(speed)
+
+
 func show_game_over(gold, level):
 	$Powerup1.visible = false
 	$PowerupText1.visible = false
@@ -45,7 +50,9 @@ func show_game_over(gold, level):
 	$Health.visible = false
 	$Damage.visible = false
 	$Cooldown.visible = false
+	$Speed.visible = false
 	$TransitionBackground.visible = true
+	$PowerupNotification.visible = false
 	$GameOver.text = "[center]%s[/center]" % ["DEFEATED\nachieved level: " + str(level) + "\ncollected gold: " + str(gold)]
 
 
@@ -56,9 +63,11 @@ func update_level(level):
 func next_level_transition():
 	powerup_pressed = false
 	$TransitionBackground.visible = true
-	select_random_powerup_with_value(0)
-	select_random_powerup_with_value(1)
-	select_random_powerup_with_value(2)
+	var selected = []
+	select_random_powerup_with_value(0, selected)
+	select_random_powerup_with_value(1, selected)
+	select_random_powerup_with_value(2, selected)
+	$PowerupNotification.visible = true
 	$Powerup1.visible = true
 	$PowerupText1.visible = true
 	$Powerup2.visible = true
@@ -76,11 +85,19 @@ func next_level_transition():
 	$Powerup3.visible = false
 	$PowerupText3.visible = false
 	$TransitionBackground.visible = false
+	$PowerupNotification.visible = false
 
 
-func select_random_powerup_with_value(powerup_slot):
-	var i = RNG.randi_range(0, len(powerup_names)-1)
-	var value = RNG.randf_range(powerup_min_vals[i], powerup_max_vals[i])
+func select_random_powerup_with_value(powerup_slot, selected):
+	var i: int
+	var value: float
+	while true:
+		i = RNG.randi_range(0, len(powerup_names)-1)
+		if i in selected:
+			continue
+		selected.append(i)
+		value = RNG.randf_range(powerup_min_vals[i], powerup_max_vals[i])
+		break
 	if powerup_names[i] == "cooldown":
 		value = snapped(value, 0.01)
 	else:
@@ -112,6 +129,9 @@ func apply_powerup(powerup_slot):
 			main.add_gold(value)
 		"cooldown":
 			player.lower_cooldown(value)
+		"speed":
+			player.increase_speed(value)
+
 
 func _on_powerup_1_pressed():
 	apply_powerup(0)

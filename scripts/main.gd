@@ -12,10 +12,10 @@ const ENEMY_SCENES: Dictionary = {
 }
 
 var RNG = RandomNumberGenerator.new()
-var MIN_INIT_WIDTH = 10
-var MAX_INIT_WIDTH = 20
-var MIN_INIT_HEIGHT = 10
-var MAX_INIT_HEIGHT = 20
+var MIN_INIT_WIDTH = 15
+var MAX_INIT_WIDTH = 25
+var MIN_INIT_HEIGHT = 15
+var MAX_INIT_HEIGHT = 25
 var WIDTH = RNG.randi_range(MIN_INIT_WIDTH, MAX_INIT_WIDTH)
 var HEIGHT = RNG.randi_range(MIN_INIT_HEIGHT, MAX_INIT_HEIGHT)
 var MAP_GROWTH = 0.05
@@ -143,6 +143,7 @@ func level_init():
 	hud.update_level(level)
 	hud.update_cooldown(player.cooldown)
 	hud.update_damage(player.damage)
+	hud.update_speed(player.speed)
 	WIDTH = int(WIDTH*(1+MAP_GROWTH))
 	HEIGHT = int(HEIGHT*(1+MAP_GROWTH))
 	spawn_player()

@@ -78,3 +78,7 @@ func increase_health(value):
 func lower_cooldown(value):
 	cooldown *= 1 - value
 	hud.update_cooldown(cooldown)
+
+func increase_speed(value):
+	speed += value
+	hud.update_speed(speed)
