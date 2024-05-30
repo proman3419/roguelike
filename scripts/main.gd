@@ -11,12 +11,19 @@ const ENEMY_SCENES: Dictionary = {
 	"ELEMENTAL": preload("res://scenes/characters/elemental.tscn")
 }
 
-var WIDTH = 40
-var HEIGHT = 30
+var RNG = RandomNumberGenerator.new()
+var MIN_INIT_WIDTH = 10
+var MAX_INIT_WIDTH = 20
+var MIN_INIT_HEIGHT = 10
+var MAX_INIT_HEIGHT = 20
+var WIDTH = RNG.randi_range(MIN_INIT_WIDTH, MAX_INIT_WIDTH)
+var HEIGHT = RNG.randi_range(MIN_INIT_HEIGHT, MAX_INIT_HEIGHT)
+var MAP_GROWTH = 0.05
+var X_BUFFER_ZONE = 50
+var Y_BUFFER_ZONE = 50
 var FLOOR_TILE_ID = 2
 var WALL_TILE_ID = 6
 var TILE_SIZE = 16
-var RNG = RandomNumberGenerator.new()
 var WANDERS_CNT = 1000
 var MAX_WANDER_DISTANCE = 1000
 var MIN_ENEMY_SPAWN_DISTANCE = 5
@@ -62,20 +69,16 @@ func generate_map():
 		var path_elem = path[RNG.randi_range(0, len(path)-1)]
 		wander(map, path, path_elem[0], path_elem[1])
 
-	#for x in range(WIDTH):
-		#print(map[x])
-	
 	return [map, path]
 
 
 func spawn_map(map):
-	for x in range(WIDTH):
-		for y in range(HEIGHT):
+	for x in range(-X_BUFFER_ZONE, WIDTH+X_BUFFER_ZONE):
+		for y in range(-Y_BUFFER_ZONE, HEIGHT+Y_BUFFER_ZONE):
 			var tile_id = FLOOR_TILE_ID
-			if x == 0 || y == 0 || x == WIDTH-1 || y == HEIGHT-1 || map[x][y] == 1:
+			if x <= 0 || y <= 0 || x >= WIDTH-1 || y >= HEIGHT-1 || map[x][y] == 1:
 				tile_id = WALL_TILE_ID
 			tile_map.set_cell(0, Vector2i(x, y), tile_id, Vector2i.ZERO)
-
 
 func wander(map, path, x, y):
 	for i in range(MAX_WANDER_DISTANCE):
@@ -140,6 +143,8 @@ func level_init():
 	hud.update_level(level)
 	hud.update_cooldown(player.cooldown)
 	hud.update_damage(player.damage)
+	WIDTH = int(WIDTH*(1+MAP_GROWTH))
+	HEIGHT = int(HEIGHT*(1+MAP_GROWTH))
 	spawn_player()
 	var generate_map_res = generate_map()
 	var map = generate_map_res[0]
