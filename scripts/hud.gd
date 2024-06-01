@@ -19,24 +19,34 @@ var selected_powerup_is = [-1, -1, -1]
 var selected_powerup_values = [0, 0, 0]
 
 
+func _ready():
+	set_background_alpha(0.5)
+
+
+func set_background_alpha(a):
+	$StatsBackground.modulate.a = a
+	$GoldBackground.modulate.a = a
+	$LevelBackground.modulate.a = a
+
+
 func update_health(health):
-	$Health.text = "HP: " + str(health)
+	$HealthText.text = str(health)
 
 
 func update_damage(damage):
-	$Damage.text = "DMG: " + str(damage)
+	$DamageText.text = str(damage)
 	
 
 func update_cooldown(cooldown):
-	$Cooldown.text = "CD: " + str(snapped(cooldown, 0.01))
+	$CooldownText.text = str(snapped(cooldown, 0.01))
 
 
 func update_gold(gold):
-	$Gold.text = "GOLD: " + str(gold)
+	$GoldText.text = str(gold)
 
 
 func update_speed(speed):
-	$Speed.text = "SPEED: " + str(speed)
+	$SpeedText.text = str(speed)
 
 
 func show_game_over(gold, level):
@@ -47,17 +57,22 @@ func show_game_over(gold, level):
 	$Powerup3.visible = false
 	$PowerupText3.visible = false
 	$Gold.visible = false
+	$GoldText.visible = false
 	$Health.visible = false
+	$HealthText.visible = false
 	$Damage.visible = false
+	$DamageText.visible = false
 	$Cooldown.visible = false
+	$CooldownText.visible = false
 	$Speed.visible = false
+	$SpeedText.visible = false
 	$TransitionBackground.visible = true
 	$PowerupNotification.visible = false
 	$GameOver.text = "[center]%s[/center]" % ["DEFEATED\nachieved level: " + str(level) + "\ncollected gold: " + str(gold)]
 
 
 func update_level(level):
-	$Level.text = "LEVEL: " + str(level)
+	$Level.text = "[center]%s[/center]" % "LEVEL: " + str(level)
 
 
 func next_level_transition():

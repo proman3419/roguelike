@@ -1,65 +1,115 @@
-[gd_scene load_steps=2 format=3 uid="uid://qajmqhslusky"]
+[gd_scene load_steps=8 format=3 uid="uid://qajmqhslusky"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_rsmco"]
+[ext_resource type="Texture2D" uid="uid://cphovybt6xem2" path="res://assets/hud_background.png" id="2_3vkwk"]
+[ext_resource type="Texture2D" uid="uid://xfw7ixon1ei7" path="res://assets/powerups/health.png" id="2_y0hi7"]
+[ext_resource type="Texture2D" uid="uid://bvnn1nrsqquqd" path="res://assets/powerups/damage.png" id="3_72qo8"]
+[ext_resource type="Texture2D" uid="uid://c4v1ts64ue1ce" path="res://assets/powerups/cooldown.png" id="4_sg48k"]
+[ext_resource type="Texture2D" uid="uid://c2wlp0tcbpihc" path="res://assets/powerups/speed.png" id="5_yjnqc"]
+[ext_resource type="Texture2D" uid="uid://bmnfg3j07swd1" path="res://assets/powerups/gold.png" id="6_cboxo"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_rsmco")
 
-[node name="Health" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 0)
+[node name="StatsBackground" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 1140.0
+offset_right = 1280.0
+offset_bottom = 200.0
+texture = ExtResource("2_3vkwk")
+stretch_mode = 1
+
+[node name="Health" type="TextureRect" parent="."]
+offset_left = 1160.0
+offset_top = 20.0
+offset_right = 1200.0
+offset_bottom = 60.0
+texture = ExtResource("2_y0hi7")
+
+[node name="HealthText" type="RichTextLabel" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
-offset_right = 50.0
-offset_bottom = 40.0
+offset_left = -70.0
+offset_top = 20.0
+offset_bottom = 60.0
 grow_horizontal = 0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 
-[node name="Damage" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 0)
+[node name="Damage" type="TextureRect" parent="."]
+offset_left = 1160.0
+offset_top = 60.0
+offset_right = 1200.0
+offset_bottom = 100.0
+texture = ExtResource("3_72qo8")
+
+[node name="DamageText" type="RichTextLabel" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -150.0
-offset_top = 40.0
-offset_right = 50.0
+offset_left = -70.0
+offset_top = 60.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="Cooldown" type="TextureRect" parent="."]
+offset_left = 1160.0
+offset_top = 100.0
+offset_right = 1200.0
+offset_bottom = 140.0
+texture = ExtResource("4_sg48k")
+
+[node name="CooldownText" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 100.0
+offset_bottom = 140.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="Speed" type="TextureRect" parent="."]
+offset_left = 1160.0
+offset_top = 140.0
+offset_right = 1200.0
+offset_bottom = 180.0
+texture = ExtResource("5_yjnqc")
+
+[node name="SpeedText" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 140.0
+offset_bottom = 180.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="GoldBackground" type="TextureRect" parent="."]
+z_index = -1
+offset_right = 210.0
 offset_bottom = 80.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+texture = ExtResource("2_3vkwk")
+stretch_mode = 1
 
-[node name="Cooldown" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 0)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -150.0
-offset_top = 80.0
-offset_right = 50.0
-offset_bottom = 120.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+[node name="Gold" type="TextureRect" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("6_cboxo")
 
-[node name="Speed" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 0)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -150.0
-offset_top = 120.0
-offset_right = 50.0
-offset_bottom = 160.0
-grow_horizontal = 0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-
-[node name="Gold" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(100, 0)
-offset_right = 400.0
-offset_bottom = 40.0
+[node name="GoldText" type="RichTextLabel" parent="."]
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 210.0
+offset_bottom = 60.0
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 
@@ -81,17 +131,26 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 scroll_active = false
 
+[node name="LevelBackground" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 590.0
+offset_right = 790.0
+offset_bottom = 50.0
+texture = ExtResource("2_3vkwk")
+stretch_mode = 1
+
 [node name="Level" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(100, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 50.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
 
 [node name="TransitionBackground" type="ColorRect" parent="."]
 visible = false
