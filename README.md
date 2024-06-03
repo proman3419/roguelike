@@ -1,5 +1,10 @@
 # roguelike
 
+## Uruchomienie
+Przygotowano wersję dla Windows x86_64. \
+Należy pobrać plik [exe.zip](exe.zip), rozpakować i uruchomić `roguelike.exe`.
+
+## Rozgrywka
 ![](readme/gameplay.png)
 
 Gra składa się z poziomów, każdy z nich składa się z:
@@ -9,22 +14,22 @@ Gra składa się z poziomów, każdy z nich składa się z:
 Celem gracza jest pokonanie wszystkich przeciwników na mapie za pomocą dystansowych ataków.\
 Przeciwnicy zadają obrażenia graczowi również za pomocą dystansowych ataków. \
 
-## Przeciwnicy
+### Przeciwnicy
 - ![](assets/characters/elemental.png) - atak długodystansowy
 - ![](assets/characters/slime.png) - atak krótkodystansowy
 
-## Wzmocnienia
+### Wzmocnienia
 Po wyeliminowaniu wszystkich przeciwników gracz wybiera jedną z nagród.
 
 ![](readme/powerups.png)
 
 - ![](assets/powerups/cooldown.png) - szybkość ataku (jak często można atakować)
-- ![](assets/powerups/damage.png) - obrażenia ataku (jak dużo punktów życia zabiera trafiony atak)
+- ![](assets/powerups/damage.png) - obrażenia ataku (jak wiele punktów życia zabiera trafiony atak)
 - ![](assets/powerups/gold.png) - złoto (zwiększa końcowy wynik)
 - ![](assets/powerups/health.png) - życie
 - ![](assets/powerups/speed.png) - szybkość poruszania
 
-## Koniec gry
+### Koniec gry
 Gra nie posiada innego zakończenia niż przegrana. \
 Jeżeli liczba punktów życia spadnie do 0 lub poniżej gra się kończy.
 

@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 scenes/*.tmp
+exe/
+readme/*.png.import
